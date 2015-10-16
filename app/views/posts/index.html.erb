@@ -1,0 +1,13 @@
+<h1>Posts and Stuff</h1>
+
+<h2>Posts - <small>create new</small></h2>
+
+<% if @posts.any? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li><%= link_to post.title, post_path(post) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No posts yet, check back later!</p>
+<% end %>
