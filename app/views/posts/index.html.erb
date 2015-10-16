@@ -1,6 +1,6 @@
 <h1>Posts and Stuff</h1>
 
-<h2>Posts - <small>create new</small></h2>
+<h2>Posts - <small><%= link_to 'create new', new_post_path %></small></h2>
 
 <% if @posts.any? %>
   <ul>
