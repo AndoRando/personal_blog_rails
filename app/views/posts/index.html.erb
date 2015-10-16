@@ -11,3 +11,15 @@
 <% else %>
   <p>No posts yet, check back later!</p>
 <% end %>
+
+<h2>Find posts by tags</small></h2>
+
+<% if @tags.any? %>
+  <ul>
+    <% @tags.each do |tag| %>
+      <li><%= link_to tag.name, tag_path(tag) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No posts have any tags yet, check back later!</p>
+<% end %>
