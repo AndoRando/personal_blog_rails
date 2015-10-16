@@ -2,6 +2,13 @@
 
 <p><%= @post.content %></p>
 
+<h3>Tags</h3>
+<ul>
+  <% @post.tags.each do |tag| %>
+    <li><%= link_to tag.name, tag_path(tag) %></li>
+  <% end %>
+</ul>
+
 <%= link_to 'Edit Post', edit_post_path(@post) %>
 <br>
 <%= link_to 'Delete Post', post_path(@post), :data => {:method => 'delete'} %>
