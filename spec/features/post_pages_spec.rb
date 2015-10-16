@@ -9,4 +9,11 @@ describe 'add a new post process' do
     click_on 'Create Post'
     expect(page).to have_content 'test post'
   end
+
+  it 'gives errors if required info is missing' do
+    visit posts_path
+    click_on 'create new'
+    click_on 'Create Post'
+    expect(page).to have_content 'Please fix'
+  end
 end
