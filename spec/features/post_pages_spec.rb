@@ -38,3 +38,12 @@ describe 'edit a post process' do
     expect(page).to have_content 'Please fix'
   end
 end
+
+describe 'delete a post process' do
+  it 'deletes a post' do
+    test_post = Post.create(title: "First post", content: "Just a test post for my new blog.")
+    visit post_path(test_post)
+    click_on 'Delete Post'
+    expect(page).not_to have_content 'First post'
+  end
+end
