@@ -1,6 +1,6 @@
 <h1>Posts and Stuff</h1>
 
-<h2>Posts - <small><%= link_to 'Create New', new_post_path %></small></h2>
+<h2>Posts - <small><%= link_to 'Create Post', new_post_path %></small></h2>
 
 <% if @posts.any? %>
   <ul>
@@ -12,7 +12,7 @@
   <p>No posts yet, check back later!</p>
 <% end %>
 
-<h2>Find posts by tags</small></h2>
+<h2>Tags - <small><%= link_to 'Create Tag', new_tag_path %></small></h2>
 
 <% if @tags.any? %>
   <ul>

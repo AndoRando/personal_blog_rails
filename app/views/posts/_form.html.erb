@@ -9,6 +9,11 @@
   <br>
   <%= f.text_area :content %>
   <br>
+  <% @tags.each do |tag| %>
+    <%= label_tag tag.name %>
+    <%= check_box_tag "tags[#{tag.name}]", tag.name %>
+  <% end %>
+  <br>
   <br>
   <%= f.submit %>
 <% end %>

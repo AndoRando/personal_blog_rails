@@ -1,17 +1,26 @@
 class PostsController < ApplicationController
+  before_action :find_post, except: [:index, :new, :create]
+  before_action :find_tags, only: [:index, :new, :edit]
+
   def index
     @posts = Post.all
-    @tags = Tag.all
-    render :index
   end
 
+  def show
+  end
+  
   def new
     @post = Post.new
-    render :new
   end
 
   def create
     @post = Post.new(post_params)
+    if params[:tags]
+      params[:tags].each do |tag|
+        @post.tags << Tag.find_by_name(tag)
+      end
+    end
+
     if @post.save
       flash[:notice] = "Post added"
       redirect_to posts_path
@@ -20,18 +29,20 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-    @post = Post.find(params[:id])
-    render :show
-  end
-
   def edit
-    @post = Post.find(params[:id])
-    render :edit
   end
 
   def update
-    @post = Post.find(params[:id])
+    if params[:tags]
+      params[:tags].each do |tag|
+        @post.tags << Tag.find_by_name(tag)
+      end
+    else
+      @post.tags.each do |tag|
+        @post.tags.delete(tag)
+      end
+    end
+
     if @post.update(post_params)
       flash[:notice] = "Post updated"
       redirect_to post_path(@post)
@@ -41,7 +52,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
   end
@@ -49,5 +59,13 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
+  def find_tags
+    @tags = Tag.all
   end
 end

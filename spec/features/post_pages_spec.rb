@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'add a new post process' do
   it 'adds a new post' do
     visit posts_path
-    click_on 'Create New'
+    click_on 'Create Post'
     fill_in 'Title', :with => 'test post'
     fill_in 'Content', :with => 'test content'
     click_on 'Create Post'
@@ -12,7 +12,7 @@ describe 'add a new post process' do
 
   it 'gives errors if required info is missing' do
     visit posts_path
-    click_on 'Create New'
+    click_on 'Create Post'
     click_on 'Create Post'
     expect(page).to have_content 'Please fix'
   end
