@@ -11,8 +11,10 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
+      flash[:notice] = "Tag added"
       redirect_to posts_path
     else
+      flash[:alert] = "Something happened, please try again."
       render :new
     end
   end
@@ -22,8 +24,10 @@ class TagsController < ApplicationController
 
   def update
     if @tag.update(tag_params)
+      flash[:notice] = "Tag updated"
       redirect_to posts_path
     else
+      flash[:alert] = "Something happened, please try again."
       render :edit
     end
   end

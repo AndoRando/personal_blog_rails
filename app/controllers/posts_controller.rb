@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def show
   end
-  
+
   def new
     @post = Post.new
   end
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
       flash[:notice] = "Post added"
       redirect_to posts_path
     else
+      flash[:alert] = "Something happened, please try again."
       render :new
     end
   end
@@ -47,6 +48,7 @@ class PostsController < ApplicationController
       flash[:notice] = "Post updated"
       redirect_to post_path(@post)
     else
+      flash[:alert] = "Something happened, please try again."
       render :edit
     end
   end
